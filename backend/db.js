@@ -7,4 +7,5 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE,
   port: process.env.MYSQL_PORT,
 });
+// 자동적으로 docker-compose의 변수를 가져온다!
 exports.pool = pool;

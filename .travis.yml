@@ -17,19 +17,20 @@ after_success:
   - docker build -t rhkddn3049/docker-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
-
+  # rhkddn3049는 나의 도커퍼브 아이디가 들어가야함!
   - docker push rhkddn3049/docker-frontend
   - docker push rhkddn3049/docker-backend
   - docker push rhkddn3049/docker-nginx
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "ap-northeast-2"
-#   app: "docker-fullstack-app"
-#   env: "DockerFullstackApp-env"
-#   bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
-#   bucket_path: "docker-fullstack-app"
-#   on:
-#     branch: master
 
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_ACCESS_KEY....
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-fullstack-app-kwangwoo"
+  env: "Dockerfullstackappkwangwoo-env"
+  bucket_name: elasticbeanstalk-us-east-1-359722493169
+  bucket_path: "docker-fullstack-app-kwangwoo"
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
