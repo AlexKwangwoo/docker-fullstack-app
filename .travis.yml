@@ -6,21 +6,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t kwangwooDocker/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+  - docker build -t kwangwoo_docker/react-test-app -f ./frontend/Dockerfile.dev ./frontend
 
 script:
-  - docker run -e CI=true kwangwooDocker/react-test-app npm run test
+  - docker run -e CI=true kwangwoo_docker/react-test-app npm run test
 
 after_success:
-  - docker build -t kwangwooDocker/docker-frontend ./frontend
-  - docker build -t kwangwooDocker/docker-backend ./backend
-  - docker build -t kwangwooDocker/docker-nginx ./nginx
+  - docker build -t kwangwoo_docker/docker-frontend ./frontend
+  - docker build -t kwangwoo_docker/docker-backend ./backend
+  - docker build -t kwangwoo_docker/docker-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push kwangwooDocker/docker-frontend
-  - docker push kwangwooDocker/docker-backend
-  - docker push kwangwooDocker/docker-nginx
+  - docker push kwangwoo_docker/docker-frontend
+  - docker push kwangwoo_docker/docker-backend
+  - docker push kwangwoo_docker/docker-nginx
 # deploy:
 #   provider: elasticbeanstalk
 #   region: "ap-northeast-2"
